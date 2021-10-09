@@ -1,6 +1,19 @@
-public struct StringHelperPackage {
-    public private(set) var text = "Hello, World!"
+import Foundation
 
-    public init() {
+public struct StringHelperPackage {
+    
+    func localizedString(_ string: String) -> String {
+        string.localized()
+    }
+    
+    func joinAttributedStrings(_ strings: NSAttributedString...) -> NSAttributedString {
+        return NSAttributedString(string: strings.map { $0.string }.joined())
+    }
+    
+}
+
+extension String {
+    public func localized(comment: String = "") -> String {
+        return NSLocalizedString(self, comment: comment)
     }
 }

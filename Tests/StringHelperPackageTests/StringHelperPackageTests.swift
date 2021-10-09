@@ -3,9 +3,18 @@ import XCTest
 
 final class StringHelperPackageTests: XCTestCase {
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(StringHelperPackage().text, "Hello, World!")
+        XCTAssertEqual(StringHelperPackage().localizedString("Hello, World!"), "Hello, World!")
+        XCTAssertEqual(StringHelperPackage().joinAttributedStrings(
+                    NSAttributedString(string: "Hello, "),NSAttributedString(string: "World!")).string,
+                       "Hello, World!"
+        )
+        
+        let texto0 = NSAttributedString(string: "Hello, ")
+        let texto1 = NSAttributedString(string: "World!")
+        let textoUnion = StringHelperPackage().joinAttributedStrings(texto0, texto1)
+        let textoCorrecto = "Hello, World!"
+        XCTAssert(textoUnion.string == textoCorrecto)
     }
+    
+    static var allTest = [("testExample",testExample)]
 }
